@@ -1,13 +1,5 @@
 <script>
-    import Cookies from 'js-cookie';
     export let data;
-    let userId = Cookies.get('userId');
-    let { data: tasks, error } = await supabase
-        .from('tasks')
-        .select('*')
-        .eq(user_id, userId);
-
-
 </script>
 
 <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
