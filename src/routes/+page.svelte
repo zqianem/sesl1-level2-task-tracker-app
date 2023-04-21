@@ -8,18 +8,15 @@
     if (!users) {
       const { data, error } = await supabase.from('users').insert([{ username: 'username' }])
     }
-
-    window.location.href = "/tasks";
   }
+  
 </script>
 
 <h1>Get tasks</h1>
-<form action="tasks" on:submit={checkUser}>
+<form method="POST" action="tasks">
   <input type="text" bind:value={username} placeholder="Enter name" />
-  <button type="submit">Submit</button>
+  <button on:click={checkUser} type="submit">Submit</button>
 </form>
-
-
 
 <style lang="postcss">
     :global(html) {
