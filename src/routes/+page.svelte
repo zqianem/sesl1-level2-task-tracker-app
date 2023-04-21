@@ -34,7 +34,7 @@
     <h1>Get tasks</h1>
     <form action="tasks">
         <input type="text" bind:value={username} placeholder="Enter name" />
-        <button type="submit">Submit</button>
+        <button onclick="login" type="submit">Submit</button>
     </form>
 </main>
 
