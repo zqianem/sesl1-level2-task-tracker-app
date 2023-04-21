@@ -1,7 +1,5 @@
 <script>
     export let data;
-
-
 </script>
 
 <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">

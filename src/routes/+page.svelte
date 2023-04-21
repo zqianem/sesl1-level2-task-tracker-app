@@ -1,5 +1,20 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import { enhance } from '$app/forms';
+
+  export let form;
+</script>
+
+<h1>Task Tracker</h1>
+<form method="POST" use:enhance>
+  <label>
+    Username
+    <input name="username" type="text" placeholder="Jane Doe">
+  </label>
+  {#if form?.missing}
+    <p>Username is required</p>
+  {/if}
+  <button type="submit">Login/register</button>
+</form>
 
 <style lang="postcss">
     :global(html) {
