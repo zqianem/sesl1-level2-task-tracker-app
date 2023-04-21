@@ -3,7 +3,7 @@
     let {users} = data
     let username = "";
     
-    async function check() {
+    const checkUser = async (event) =>  {
         let { data: users, error } = await supabase
             .from('users')
             .select('username')
@@ -23,7 +23,7 @@
 
 <main>
     <h1>Get tasks</h1>
-    <form action="tasks">
+    <form action="tasks" on:submit={checkUser}>
         <input type="text" bind:value={username} placeholder="Enter name" />
         <button type="submit">Submit</button>
     </form>
