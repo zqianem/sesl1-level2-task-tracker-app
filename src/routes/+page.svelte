@@ -25,7 +25,7 @@
     <h1>Get tasks</h1>
     <form action="tasks">
         <input type="text" bind:value={username} placeholder="Enter name" />
-        <button onclick="check" type="submit">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 </main>
 
