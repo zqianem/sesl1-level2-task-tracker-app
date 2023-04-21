@@ -7,3 +7,4 @@ export async function load({ locals: { supabase } }) {
 
   if (error) throw sk_error(500, error);
   return {"users":data};
+}
