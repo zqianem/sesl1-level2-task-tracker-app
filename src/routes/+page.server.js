@@ -17,11 +17,12 @@ export const actions = {
 
     let user_id;
     if (data.length === 0) {
-      const { data, error } = await supabase
+      const { data: insert_data, error } = await supabase
         .from('users')
-        .insert({ username });
+        .insert({ username })
+        .select();
       if (error) throw sk_error(500, error);
-      user_id = data[0].id;
+      user_id = insert_data[0].id;
 
     } else {
       user_id = data[0].id;
