@@ -14,7 +14,7 @@ create table
     user_id bigint not null,
     title text not null,
     description text null,
-    status public.status not null,
+    status public.status not null default 'Not Started'::status,
     due_date date null,
     constraint task_pkey primary key (id),
     constraint tasks_user_id_fkey foreign key (user_id) references users (id) on delete cascade

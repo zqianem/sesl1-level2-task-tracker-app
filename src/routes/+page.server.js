@@ -14,14 +14,21 @@ export const actions = {
       .select()
       .eq('username', username);
     if (error) throw sk_error(500, error);
+
+    let user_id;
     if (data.length === 0) {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('users')
         .insert({ username });
       if (error) throw sk_error(500, error);
+      user_id = data[0].id;
+
+    } else {
+      user_id = data[0].id;
     }
 
     cookies.set('username', username);
+    cookies.set('user_id', user_id);
     throw redirect(303, '/tasks');
   },
 }
