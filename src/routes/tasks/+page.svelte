@@ -2,6 +2,22 @@
   export let data;
 
   let id_of_task_being_edited = null;
+  let sort_method = 'title';
+
+  $: tasks = data.tasks;
+  $: {
+    tasks.sort((a, b) => {
+      switch (sort_method) {
+        case 'title':
+          return (a.title ?? '').localeCompare(b.title);
+        case 'status':
+          return a.status.localeCompare(b.title);
+        case 'due date':
+          return (a.due_date ?? '').localeCompare(b.due_date);
+      }
+    });
+    tasks = tasks;
+  }
 </script>
 
 <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -29,12 +45,21 @@
         </button>
     </form>
 </div>
+
+
+
 <div class="w-full bg-slate-100 rounded shadow p-6">
     <h2
     class="text-center font-bold"> Tasks List</h2>
-    {#if data.tasks.length > 0}
+    <p>Sort tasks by:</p>
+    <select bind:value={sort_method}>
+      <option value="title">Title</option>
+      <option value="status">Status</option>
+      <option value="due date">Due Date</option>
+    </select>
+    {#if tasks.length > 0}
     <ul>
-        {#each data.tasks as {title,description,status,due_date,id}}
+        {#each tasks as {title,description,status,due_date,id}}
         <li>
             <div class="rounded shadow m-4 p-6">
               {#if id_of_task_being_edited === id}
@@ -93,6 +118,8 @@
         </li>
         {/each}
     </ul>
+    {:else}
+      <p>No tasks</p>
     {/if}
 </div>
 
